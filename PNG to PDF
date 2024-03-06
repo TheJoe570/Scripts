@@ -1,0 +1,24 @@
+from PIL import Image
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen import canvas
+
+def convert_to_pdf(png_file, pdf_file):
+    # Open the PNG image
+    image = Image.open(png_file)
+
+    # Create a new PDF document
+    c = canvas.Canvas(pdf_file, pagesize=image.size)
+
+    # Draw the PNG image onto the PDF canvas
+    c.drawImage(png_file, 0, 0, width=image.width, height=image.height)
+
+    # Save the PDF document
+    c.save()
+
+# Replace 'resume.png' with the path to your PNG file
+png_file = r'C:\Users\thejo\Desktop\Resume.png'  # Using raw string literal
+
+# Replace 'resume.pdf' with the desired path for the PDF output file
+pdf_file = r'C:\Users\thejo\Desktop\resume.pdf'  # Using raw string literal
+
+convert_to_pdf(png_file, pdf_file)
